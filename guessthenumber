@@ -1,0 +1,50 @@
+import random
+from art import logo
+print(logo)
+
+print("Welcome to the Number Guessing Game!")
+print("I am thinking of a Number between 1 to 100. Can You guess it?")
+
+numbers = [
+    1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
+    11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+    21, 22, 23, 24, 25, 26, 27, 28, 29, 30,
+    31, 32, 33, 34, 35, 36, 37, 38, 39, 40,
+    41, 42, 43, 44, 45, 46, 47, 48, 49, 50,
+    51, 52, 53, 54, 55, 56, 57, 58, 59, 60,
+    61, 62, 63, 64, 65, 66, 67, 68, 69, 70,
+    71, 72, 73, 74, 75, 76, 77, 78, 79, 80,
+    81, 82, 83, 84, 85, 86, 87, 88, 89, 90,
+    91, 92, 93, 94, 95, 96, 97, 98, 99, 100
+]
+
+while True:
+  computer_choice = random.choice(numbers)
+  game_over = False
+  lives = 0
+  max_lives = 10
+  
+  while not game_over and lives<max_lives:
+    user_choice = int(input("Make your guess: "))
+    
+    if user_choice < 1 or user_choice > 100:
+      print(" Please guess a number between 1 and 100.")
+    else:
+      lives += 1
+      if user_choice == computer_choice:
+        print(" You win! The number was", computer_choice)
+        game_over = True
+      elif abs(computer_choice - user_choice) <= 5:
+        print(" Almost there! Within 3.")
+      elif abs(computer_choice - user_choice) <= 10:
+        print(" You are getting close. Within 10.")
+      else:
+        print(" You are far.")
+    print(f"Attempts left: {max_lives - lives}")
+
+  if not game_over:
+    print(f"Sorry, you've used all {max_lives} attempts. The number is {computer_choice}") 
+  again = input("\nWant to play again? 'y' or 'n'.").lower()
+  if again == 'n':
+    break
+    
